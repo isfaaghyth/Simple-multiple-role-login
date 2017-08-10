@@ -1,7 +1,9 @@
 # Simple-multiple-role-login
 
-- ganti base URL di: ```\network\BosqClient.java```
-- ganti api endpoint di: ```\network\RouteServices.java -> doLogin();```
+example API: ```api-example\login.php```
+
+- ganti base URL di: ```{package-name}\network\BosqClient.java```
+- ganti api endpoint di: ```{package-name}\network\RouteServices.java -> doLogin();```
 
 example login:
 ```
