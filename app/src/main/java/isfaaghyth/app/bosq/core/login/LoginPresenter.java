@@ -37,14 +37,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     public void isLoginChecked() {
         if (!CacheManager.checkExist("login")) return;
         if (CacheManager.grabBoolean("login")) {
-            switch (CacheManager.grabInt("type")) {
-                case Consts.BIGBOSS_ROLE:
-                    ActivitiesUtil.start(view.getActivity(), BigbossActivity.class);
-                    break;
-                case Consts.SUPERVISOR_ROLE:
-                    ActivitiesUtil.start(view.getActivity(), SupervisorActivity.class);
-                    break;
-            }
+            isRole(CacheManager.grabInt("type"));
         }
     }
 
@@ -52,7 +45,11 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         CacheManager.save("login", true);
         CacheManager.save("name", result.getName());
         CacheManager.save("type", result.getRole());
-        switch (result.getRole()) {
+        isRole(result.getRole());
+    }
+
+    private void isRole(int role) {
+        switch (role) {
             case Consts.BIGBOSS_ROLE: //bigboss
                 ActivitiesUtil.start(view.getActivity(), BigbossActivity.class);
                 break;
