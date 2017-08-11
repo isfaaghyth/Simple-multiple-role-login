@@ -1,5 +1,7 @@
 package isfaaghyth.app.bosq.core.login;
 
+import android.support.annotation.NonNull;
+
 import isfaaghyth.app.bosq.base.BasePresenter;
 import isfaaghyth.app.bosq.core.bigboss.BigbossActivity;
 import isfaaghyth.app.bosq.core.supervisor.SupervisorActivity;
@@ -23,12 +25,12 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
     public void doLogin(String email, String password) {
         getService().doLogin(email, password).enqueue(new Callback<LoginModel>() {
-            @Override public void onResponse(Call<LoginModel> result, Response<LoginModel> response) {
+            @Override public void onResponse(@NonNull Call<LoginModel> result, @NonNull Response<LoginModel> response) {
                 if (response.isSuccessful()) {
                     view.onSuccess(response.body());
                 }
             }
-            @Override public void onFailure(Call<LoginModel> result, Throwable t) {
+            @Override public void onFailure(@NonNull Call<LoginModel> result, @NonNull Throwable t) {
                 view.onError(t.getMessage());
             }
         });

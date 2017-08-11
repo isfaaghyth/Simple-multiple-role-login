@@ -1,25 +1,17 @@
 package isfaaghyth.app.bosq.core.login;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import isfaaghyth.app.bosq.R;
 import isfaaghyth.app.bosq.base.BaseActivity;
-import isfaaghyth.app.bosq.core.bigboss.BigbossActivity;
-import isfaaghyth.app.bosq.core.supervisor.SupervisorActivity;
 import isfaaghyth.app.bosq.model.LoginModel;
-import isfaaghyth.app.bosq.util.CacheManager;
-import isfaaghyth.app.bosq.util.Consts;
 
 /**
  * Created by isfaaghyth on 8/10/17.
