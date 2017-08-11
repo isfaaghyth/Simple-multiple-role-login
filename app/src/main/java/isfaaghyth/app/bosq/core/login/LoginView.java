@@ -1,5 +1,7 @@
 package isfaaghyth.app.bosq.core.login;
 
+import android.support.v7.app.AppCompatActivity;
+
 import isfaaghyth.app.bosq.model.LoginModel;
 
 /**
@@ -10,4 +12,5 @@ import isfaaghyth.app.bosq.model.LoginModel;
 public interface LoginView {
     void onSuccess(LoginModel result);
     void onError(String message);
+    AppCompatActivity getActivity();
 }

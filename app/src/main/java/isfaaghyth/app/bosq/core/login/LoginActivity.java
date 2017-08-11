@@ -1,9 +1,12 @@
 package isfaaghyth.app.bosq.core.login;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,9 +37,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding(R.layout.activity_login);
-
-        //check isLogin
-        isLoginChecked();
+        presenter.isLoginChecked();
     }
 
     @OnClick(R.id.btn_login)
@@ -48,19 +49,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override public void onSuccess(LoginModel result) {
         if (result.isStatus()) {
-            CacheManager.save("login", true);
-            CacheManager.save("name", result.getName());
-            CacheManager.save("type", result.getRole());
-            switch (result.getRole()) {
-                case Consts.BIGBOSS_ROLE: //bigboss
-                    startActivity(new Intent(this, BigbossActivity.class));
-                    finish();
-                    break;
-                case Consts.SUPERVISOR_ROLE: //supervisor
-                    startActivity(new Intent(this, SupervisorActivity.class));
-                    finish();
-                    break;
-            }
+            presenter.onSuccessLogin(result);
         } else {
             showError("Akun tidak terdaftar.");
         }
@@ -71,20 +60,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         showError(message);
     }
 
-    private void isLoginChecked() {
-        if (!CacheManager.checkExist("login")) return;
-        if (CacheManager.grabBoolean("login")) {
-            switch (CacheManager.grabInt("type")) {
-                case Consts.BIGBOSS_ROLE:
-                    startActivity(new Intent(this, BigbossActivity.class));
-                    finish();
-                    break;
-                case Consts.SUPERVISOR_ROLE:
-                    startActivity(new Intent(this, SupervisorActivity.class));
-                    finish();
-                    break;
-            }
-        }
+    @Override public AppCompatActivity getActivity() {
+        return this;
     }
 
     private void showError(String message) {

@@ -1,9 +1,12 @@
 package isfaaghyth.app.bosq.core.login;
 
-import android.util.Log;
-
 import isfaaghyth.app.bosq.base.BasePresenter;
+import isfaaghyth.app.bosq.core.bigboss.BigbossActivity;
+import isfaaghyth.app.bosq.core.supervisor.SupervisorActivity;
 import isfaaghyth.app.bosq.model.LoginModel;
+import isfaaghyth.app.bosq.util.ActivitiesUtil;
+import isfaaghyth.app.bosq.util.CacheManager;
+import isfaaghyth.app.bosq.util.Consts;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,4 +33,33 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             }
         });
     }
+
+    public void isLoginChecked() {
+        if (!CacheManager.checkExist("login")) return;
+        if (CacheManager.grabBoolean("login")) {
+            switch (CacheManager.grabInt("type")) {
+                case Consts.BIGBOSS_ROLE:
+                    ActivitiesUtil.start(view.getActivity(), BigbossActivity.class);
+                    break;
+                case Consts.SUPERVISOR_ROLE:
+                    ActivitiesUtil.start(view.getActivity(), SupervisorActivity.class);
+                    break;
+            }
+        }
+    }
+
+    public void onSuccessLogin(LoginModel result) {
+        CacheManager.save("login", true);
+        CacheManager.save("name", result.getName());
+        CacheManager.save("type", result.getRole());
+        switch (result.getRole()) {
+            case Consts.BIGBOSS_ROLE: //bigboss
+                ActivitiesUtil.start(view.getActivity(), BigbossActivity.class);
+                break;
+            case Consts.SUPERVISOR_ROLE: //supervisor
+                ActivitiesUtil.start(view.getActivity(), SupervisorActivity.class);
+                break;
+        }
+    }
+
 }
