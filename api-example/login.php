@@ -36,11 +36,13 @@
       $res['status'] = true;
       $res['name'] = 'Muh Isfhani';
       $res['role'] = 1;
+      $res['token'] = md5('bigboss@perusahaan.com'); //example simulate token for ouath
       echo json_encode($res);
    } else if ($email == 'supervisor@perusahaan.com') {
       $res['status'] = true;
       $res['name'] = 'Ghiath';
       $res['role'] = 2;
+      $res['token'] = md5('supervisor@perusahaan.com'); //example simulate token for ouath
       echo json_encode($res);
    } else {
       $res['status'] = false;
