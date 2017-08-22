@@ -47,6 +47,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         CacheManager.save("login", true);
         CacheManager.save("name", result.getName());
         CacheManager.save("type", result.getRole());
+        CacheManager.save("token", result.getToken());
         isRole(result.getRole());
     }
 
