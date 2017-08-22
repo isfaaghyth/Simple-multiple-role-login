@@ -11,6 +11,7 @@ public class LoginModel {
     @SerializedName("status") private boolean status;
     @SerializedName("name") private String name;
     @SerializedName("role") private int role;
+    @SerializedName("token") private String token;
 
     public boolean isStatus() {
         return status;
@@ -22,5 +23,9 @@ public class LoginModel {
 
     public int getRole() {
         return role;
+    }
+    
+    public String getToken() {
+        return token;
     }
 }
