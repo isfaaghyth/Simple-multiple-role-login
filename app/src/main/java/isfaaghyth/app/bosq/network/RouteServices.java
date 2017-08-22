@@ -1,6 +1,7 @@
 package isfaaghyth.app.bosq.network;
 
 import isfaaghyth.app.bosq.model.LoginModel;
+import isfaaghyth.app.bosq.model.MainModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -24,9 +25,9 @@ public interface RouteServices {
         @param: token
     */
     
-    //@GET("/test/test.php") //done
-    //Call<Model> getDataTest(
-    //        @Header("Authorization") String token //set param token for oauth
-    //);
+    @GET("/test/test.php") //done
+    Call<MainModel> getDataTest(
+            @Header("oauth") String token //set param token for oauth
+    );
 
 }
