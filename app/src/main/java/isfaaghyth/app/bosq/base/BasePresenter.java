@@ -24,5 +24,9 @@ public class BasePresenter<V> {
     public RouteServices getService() {
         return service;
     }
+    
+    protected String getToken() {
+        return CacheManager.grabString("token");
+    }
 
 }
